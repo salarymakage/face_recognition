@@ -1,0 +1,470 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Localizing Face Recognition Technology for Security and Affordability in Cambodia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Link to FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ Header ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <header class="header-box">
+        <div class="logo-container">
+            <div class="left-logos">
+                <img src="{% static 'Logo/RUPP.png' %}" alt="First Logo" class="logo">
+                <div class="logo-separator"></div>
+                <img src="{% static 'Logo/FE.png' %}" alt="Second Logo" class="logo second-logo">
+            </div>
+            <div class="header-text">
+                <h1>Royal University of Phnom Penh </h1>
+                <h1>Faculty of Engineering</h1>
+                <h1>Data Science and Engineering</h1>
+            </div>
+            <div class="right-logo">
+                <img src="{% static 'Logo/DSE.png' %}" alt="Third Logo" class="logo third-logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ Sidebar ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <nav id="sidebar" class="sidebar">
+        <ul class="top-section">
+            <li><a href="#home" onclick="showSection('home')"><i class="fas fa-bars"></i> <span class="link-text">Menu</span></a></li>
+        </ul>
+        <ul class="middle-section">
+            <li><a href="#recognition" id="recognition-link" onclick="showSection('recognition')"><i class="fas fa-check-circle"></i> <span class="link-text">Recognition</span></a></li>
+            <li><a href="#register" id="register-link" onclick="showSection('register')"><i class="fas fa-user-plus"></i> <span class="link-text">Register</span></a></li>
+            <li><a href="#list" id="list-link" onclick="showSection('list')"><i class="fas fa-list"></i> <span class="link-text">List</span></a></li>
+        </ul>
+        <ul class="bottom-section">
+            <li><a href="#aboutus" id="aboutus-link" onclick="showSection('aboutus')"><i class="fas fa-info-circle"></i> <span class="link-text">About Us</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ Main Content ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <div id="main">
+        <button id="toggleBtn" class="toggle-btn" aria-label="Toggle Navigation" onclick="toggleSidebar()">
+        </button>
+
+        <section id="home" class="section-content" style="display:none;">
+            <h1>Welcome</h1>
+            <p>Select a section from the sidebar to view its content.</p>
+        </section>
+
+    
+        <!-- ======================================================= Recognition Section ======================================================= -->
+        <section id="recognition" class="section-content" style="display:block;">
+            <link rel="stylesheet" href="{% static 'css/recognition.css' %}">
+            <div class="container">
+                <div class="part1">
+                    <!-- Dropdown to choose between ML and DL -->
+                    {% comment %} <div class="choose-method">
+                        <label for="methodSwitch" class="switch-label">Choose Method:</label>
+                        <label class="switch">
+                            <input type="checkbox" id="methodSwitch" name="methodSwitch">
+                            <span class="slider">
+                                <i class="fas fa-brain ml-icon"></i> <!-- ML icon -->
+                                <i class="fas fa-robot dl-icon"></i> <!-- DL icon -->
+                            </span>
+                        </label>
+                    </div> {% endcomment %}
+                    
+                    <div class="video-container">
+                        <!-- Use img for the video stream -->
+                        <img id="videoFeed" src="{% static 'img/Face.png' %}" alt="Video Feed">
+                        <div id="blackScreen" style="display: none;">No camera feed</div>
+                    </div>
+                
+                    <div class="button-container">
+                        <button id="startVideo" class="button button--primary">Start Video</button>
+                        <button id="stopVideo" class="button button--primary">Stop Video</button>
+                    </div>
+                </div>
+                
+
+                <div class="part2">
+                    <div class="info-image-container">
+                        <div class="info-container">
+                            <h2>General Information</h2>
+                            <div class="form-group">
+                                <label for="id">ID</label>
+                                <input type="text" name="id" id="id" value="{{ detected_student.0 }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="fname">First Name</label>
+                                <input type="text" name="fname" id="fname" value="{{ detected_student.1 }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="lname">Last Name</label>
+                                <input type="text" name="lname" id="lname" value="{{ detected_student.2 }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <input type="text" name="gender" id="gender" value="{{ detected_student.3 }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="medical-condition">Medical Condition</label>
+                                <input type="text" name="medical-condition" id="medical-condition" value="{{ detected_student.4 }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" id="address" value="{{ detected_student.5 }}" readonly>
+                            </div>
+                        </div>
+                        <div class="image-container">
+                            <img id="studentImage" src="{% static 'img/Face.png' %}" alt="Student Image">
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- ======================================================= Register Section ======================================================= -->
+        
+        <section id="register" class="section-content" style="display:none;">
+            <link rel="stylesheet" href="{% static 'css/register.css' %}">
+            <div class="container">
+                <div class="part2">
+                    <div class="info-image-container">
+                        <div class="form-container">
+                            <h2>General Information</h2>
+                            <form id="registerForm" method="POST" action="{% url 'submit_data' %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="fname">First Name</label>
+                                    <input type="text" name="fname" id="fname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" name="lname" id="lname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select name="gender" id="gender" required>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="O">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="medical-condition">Medical Condition</label>
+                                    <input type="text" name="medical-condition" id="medical-condition" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <select name="address" id="address" required>
+                                        <option value="Phnom Penh">Phnom Penh</option>
+                                        <option value="Siem Reap">Siem Reap</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emergency-contact">Emergency Contact</label>
+                                    <input type="number" name="emergency-contact" id="emergency-contact" required>
+                                </div>
+                                <div class="submit">
+                                    <button class="button button--primary" type="submit" id="submitBtn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="part1">
+                    <div class="video-container">
+                        <video id="video" autoplay></video>
+                        <canvas id="canvas" style="display:none;"></canvas> <!-- Hidden canvas for capturing image -->
+                        <img id="capturedImage" alt="Captured Image" style="display:none;" />
+                    </div>
+                    <div class="button-container">
+                        <button id="startVideo" class="button button--primary">Start Video</button>
+                        <button id="stopVideo" class="button button--primary">Stop Video</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- ======================================================= List Section ======================================================= -->
+        <section id="list" class="section-content" style="display:none;">
+            <link rel="stylesheet" href="{% static 'css/list.css' %}">
+            <h1>Student List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.0 }}</td>
+                <td>{{ student.1 }}</td>
+                <td>{{ student.2 }}</td>
+                <td>
+                    <button  class="button-view" onclick="showStudentDetails('{{ student.0 }}')">View Details</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Modal for displaying student details -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="studentName"></h2>
+            <img id="imageShow" alt="Student Image" style="width: 120px; height: 180px;">
+
+            <p><strong>Gender:</strong> <span id="studentGender"></span></p>
+            <p><strong>Medical Condition:</strong> <span id="studentMedicalCondition"></span></p>
+            <p><strong>Address:</strong> <span id="studentAddress"></span></p>
+            <p><strong>Emergency Contact:</strong> <span id="studentEmergencyContact"></span></p>
+        </div>
+    </div>
+    
+        </section>
+
+        <!-- ======================================================= About Us Section ======================================================= -->
+        <section id="aboutus" class="section-content" style="display:none;">
+            <link rel="stylesheet" href="{% static 'css/aboutus.css' %}">
+            <section class="about-us">
+                <div class="students-section">
+                <!-- Advisor Section -->
+                <h2>Advisor</h2>
+                <div class="students-box">
+                    <div class="student">
+                        <div class="image-bg">
+                            <img src="{% static 'profile/Advisor.png' %}" alt="Student 1 Image" class="student-img">
+                            <img src="{% static 'profile/Advisor.png' %}" alt="Student 1 Image 2" class="student-img img-2">
+                        </div>
+                        <p>Chamroeun Khim<br><span class="role">Supervisor</span></p>
+                        <p class="quote">"Data is the new oil, let's refine it."</p>
+                    </div>
+                
+                    <div class="student">
+                        <div class="image-bg">
+                            <img src="{% static 'profile/breaksa.png' %}" alt="Student 2 Image" class="student-img">
+                            <img src="{% static 'Reaksa/Rak1.png' %}" alt="Student 2 Image 2" class="student-img img-2">
+                        </div>
+                        <p>Mai Reaksa<br><span class="role">Mentor</span></p>
+                        <p class="quote">"Just relax n sleep. everything is fine."</p>
+                    </div>
+                </div>
+                        
+                <div class="students-section">
+                    <h2>Our Team</h2>
+                    <div class="students-box">
+                        <div class="student">
+                            <div class="image-bg">
+                                <img src="{% static 'profile/Rom.png' %}" alt="Student 1 Image" class="student-img">
+                                <img src="{% static 'profile/Rom1.png' %}" alt="Student 1 Image 2" class="student-img img-2">
+                            </div>
+                            <p>Rop Borom<br><span class="role">Backend Developer</span></p>
+                            <p class="quote">"Data is the new oil, let's refine it."</p>
+                        </div>
+                    
+                        <div class="student">
+                            <div class="image-bg">
+                                <img src="{% static 'profile/Rak.png' %}" alt="Student 2 Image" class="student-img">
+                                <img src="{% static 'profile/Rak1.png' %}" alt="Student 2 Image 2" class="student-img img-2">
+                            </div>
+                            <p>Phork Norak<br><span class="role">Model R&D</span></p>
+                            <p class="quote">"Just relax n sleep. everything is fine."</p>
+                        </div>
+                    
+                        <div class="student">
+                            <div class="image-bg">
+                                <img src="{% static 'profile/Zaa.png' %}" alt="Student 3 Image" class="student-img">
+                                <img src="{% static 'profile/Zaa1.png' %}" alt="Student 3 Image 2" class="student-img img-2">
+                            </div>
+                            <p>Nhor Povketya<br><span class="role">Data Quality Analyst</span></p>
+                            <p class="quote">"If you don't believe, Don't believe"</p>
+                        </div>
+                    
+                        <div class="student">
+                            <div class="image-bg">
+                                <img src="{% static 'profile/Reah.png' %}" alt="Student 4 Image" class="student-img">
+                                <img src="{% static 'profile/Reah1.png' %}" alt="Student 4 Image 2" class="student-img img-2">
+                            </div>
+                            <p>Tan Chesthareah<br><span class="role">Frontend Developer</span></p>
+                            <p class="quote">"You must be a semicolon, because without you, my code and my life would fall apart!"</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ Footer ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <footer class="footer-box">
+        <p>© 2024 Royal University of Phnom Penh, Faculty of Engineering, Data Science and Engineering. All rights reserved.</p>
+    </footer>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        let studentUpdateInterval; // Declare a variable to store the interval
+
+        document.getElementById('startVideo').addEventListener('click', function() {
+            // Set the video feed source to the Django view URL
+            document.getElementById('videoFeed').src = "{% url 'video_feed' %}";
+            document.getElementById('blackScreen').style.display = 'none';  // Hide the "No camera feed" message
+            document.getElementById('videoFeed').style.display = 'block';   // Ensure the video feed is displayed
+        
+            // Start polling the server every 3 seconds for detected student info
+            studentUpdateInterval = setInterval(updateDetectedStudent, 3000);
+        });
+
+        document.getElementById('methodSwitch').addEventListener('change', function() {
+            const methodText = document.getElementById('methodText');
+            if (this.checked) {
+                methodText.textContent = "Deep Learning (DL)";
+            } else {
+                methodText.textContent = "Machine Learning (ML)";
+            }
+        });
+        
+
+        document.getElementById('stopVideo').addEventListener('click', function() {
+            // Stop the video feed by sending a request to the stop_camera view
+            fetch("{% url 'stop_camera' %}")
+                .then(() => {
+                    document.getElementById('videoFeed').src = "";  // Clear the video source
+                    document.getElementById('blackScreen').style.display = 'flex';  // Show the "No camera feed" message
+                    document.getElementById('videoFeed').style.display = 'none';    // Hide the video feed
+                
+                    // Clear the input fields
+                    document.getElementById('id').value = '';
+                    document.getElementById('fname').value = '';
+                    document.getElementById('lname').value = '';
+                    document.getElementById('gender').value = '';
+                    document.getElementById('medical-condition').value = '';
+                    document.getElementById('address').value = '';
+                
+                    // Set the student image back to the default image
+                    document.getElementById('studentImage').src = "{% static 'img/Face.png' %}";
+                
+                    // Stop the polling interval
+                    clearInterval(studentUpdateInterval); // Stop the server polling
+                })
+                .catch(error => console.error('Error stopping the camera:', error));
+        });
+
+        function updateDetectedStudent() {
+            fetch("{% url 'detected_student_info' %}")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.Error) {
+                        console.error(data.Error);
+                        return;
+                    }
+                
+                    // Populate the form fields with the detected student's data
+                    document.getElementById('id').value = data.id;
+                    document.getElementById('fname').value = data.first_name;
+                    document.getElementById('lname').value = data.last_name;
+                    document.getElementById('gender').value = data.gender;
+                    document.getElementById('medical-condition').value = data.medical_condition;
+                    document.getElementById('address').value = data.address;
+                
+                    // Dynamically update the student image based on the ID
+                    const imgElement = document.getElementById('studentImage');
+                    imgElement.src = "{% static 'img/' %}" + data.id + ".png";  // Assuming the image is named after the student's ID
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function showStudentDetails(studentId) {
+            fetch(`/students/${studentId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate modal with student data
+                    document.getElementById('studentName').innerText = `${data.first_name} ${data.last_name}`;
+                    document.getElementById('imageShow').src = `/static/img/${data.id}.png`;
+                    //document.getElementById('studentImage').src = `/static/img/${data.id}.png`;
+
+ // Make sure this path is correct
+                    document.getElementById('studentGender').innerText = data.gender;
+                    document.getElementById('studentMedicalCondition').innerText = data.medical_condition;
+                    document.getElementById('studentAddress').innerText = data.address;
+                    document.getElementById('studentEmergencyContact').innerText = data.emergency_contact;
+        
+                    // Show modal
+                    const modal = document.getElementById('studentModal');
+                    modal.style.display = 'block';
+        
+                    // Close modal functionality
+                    const closeBtn = document.getElementsByClassName('close')[0];
+                    closeBtn.onclick = function() {
+                        modal.style.display = 'none';
+                    };
+        
+                    // Close modal when clicking outside the modal content
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = 'none';
+                        }
+                    };
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        
+
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            // Prevent form from submitting immediately
+            event.preventDefault();
+        
+            // Start the video feed
+            startVideo();
+        
+            // Submit the form after starting the camera
+            this.submit();
+        });
+        
+        function startVideo() {
+            const video = document.getElementById('video');
+        
+            // Access the camera
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function(stream) {
+                        video.srcObject = stream;
+                        video.play();
+                        document.getElementById('blackScreen').style.display = 'none';
+                    })
+                    .catch(function(err) {
+                        console.log("Error: " + err);
+                        document.getElementById('blackScreen').style.display = 'block';
+                    });
+            }
+        }
+        
+        document.getElementById('startVideo').addEventListener('click', startVideo);
+        
+        document.getElementById('stopVideo').addEventListener('click', function() {
+            const video = document.getElementById('video');
+            const stream = video.srcObject;
+        
+            if (stream) {
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop()); // Stop all tracks (video/audio)
+                video.srcObject = null;
+            }
+        });
+        
+
+        // Poll the server every 3 seconds (3000 milliseconds) to get the detected student's info
+        {% comment %} setInterval(updateDetectedStudent, 3000);  {% endcomment %}
+        
+    </script>
+</body>
+</html>

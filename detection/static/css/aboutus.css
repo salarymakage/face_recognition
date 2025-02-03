@@ -1,0 +1,190 @@
+/* General container styles for the sections */
+.about-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 90%; /* Makes the layout wider */
+    margin: 0 auto; /* Centers the entire container */
+    margin-left: 70px;
+}
+
+.advisor-section,
+.students-section {
+    padding: 20px;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ===================== ADVISOR SECTION ===================== */
+/* Flexbox for side-by-side advisor boxes */
+.advisor-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adds space between advisors */
+    flex-wrap: wrap; /* Ensures that the advisors wrap on smaller screens */
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* Advisor container styles */
+.advisor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 40px); /* Each box takes up half of the space, minus the gap */
+    box-sizing: border-box;
+}
+
+/* Fixing Advisor image */
+.image-bg {
+    background-color: #3498db;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Advisor image styling */
+.advisor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* For additional images (optional) */
+.img-2 {
+    display: none; /* Can toggle this image on hover or animation */
+}
+
+/* Quote and role styling */
+.role {
+    font-weight: normal;
+    display: block;
+}
+
+.quote {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+    text-align: center;
+    max-width: 220px;
+}
+
+/* ===================== STUDENTS SECTION ===================== */
+/* Student container styles */
+.students-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Student background with animation */
+.students-section .image-bg {
+    background: linear-gradient(90deg, #ffffff, #ffffff); /* Yellow gradient */
+    background-size: 400% 400%;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Smooth transition for the student images */
+.students-section .image-bg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image fills the container properly */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* When the image is active, make it visible */
+.students-section .image-bg img.active {
+    opacity: 1;
+}
+
+/* ===================== IMAGE SWITCHING ANIMATION ===================== */
+@keyframes bg-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===================== TEXT STYLING ===================== */
+/* General styling for text under images */
+.students-section p,
+.advisor-section p {
+    text-align: center;
+}
+
+.role {
+    font-weight: normal;
+    display: block;
+}
+
+.quote {
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+    text-align: center;
+    max-width: 220px;
+}
+
+/* ===================== LAYOUT STYLING ===================== */
+/* Student box layout */
+.students-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.students-section .student {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}

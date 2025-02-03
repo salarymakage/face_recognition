@@ -1,0 +1,270 @@
+/* Main Container Styling */
+:root {
+    --primary-color: #333;
+    --secondary-color: #444;
+    /* --text-color: #333333; */
+    --background-color: #f5f5f7;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+/* Part 1: Video Feed */
+.part1, .part2 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+/* Ensure both parts are the same height */
+.part1, .part2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.part1 {
+    max-width: 30%;
+}
+
+.part2 {
+    max-width: 65%;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;  /* Horizontal center for the video */
+    align-items: center;  /* Vertical center for the video */
+    width: 100%; /* Make it take up the full width of the parent container */
+    background-color: #000; /* Background color for video container */
+    border-radius: 10px;  /* Optional: To add rounded corners */
+    overflow: hidden; /* Hide overflow if the video exceeds container bounds */
+    aspect-ratio: 2 / 3; /* Set the aspect ratio to 4:6 (or 2:3) */
+    max-width: 400px; /* Optional: to limit the maximum width */
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#blackScreen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2em;
+}
+
+.button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.button:focus {
+    outline: 3px solid rgba(82, 82, 82, 0.5);
+    outline-offset: 2px;
+}
+
+.button--primary {
+    background-color: var(--primary-color);
+    color: rgb(255, 255, 255);
+}
+
+.button--primary:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Part 2: General Information and Image */
+.part2 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    max-width: 65%;
+}
+
+/* Heading styling */
+.section-title {
+    font-size: 1.5em; /* Adjust the size as needed */
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 50px; /* Increase space below the heading */
+    text-align: center;
+}
+
+.info-image-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.info-container {
+    flex: 1;
+    padding: 30px;
+}
+
+.info-container h2 {
+    margin-bottom: 20px;
+}
+
+/* Form group styling */
+.info-container .form-group {
+    margin-bottom: 30px; /* Increase space between form groups */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #ccc; /* Small line between form groups */
+    padding-bottom: 15px; /* Space below the line */
+}
+
+.info-container .form-group:last-child {
+    border-bottom: none; /* Remove line after the last form group */
+}
+
+.info-container label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px; /* Space between label and input */
+    text-align: left; /* Align text to the left */
+    font-size: 1.2em; /* Increase font size */
+    width: 150px; /* Fixed width for labels */
+}
+
+.info-container label::after {
+    content: ":"; /* Add a colon after the label text */
+}
+
+.info-container input[type="text"] {
+    width: 200px; /* Fixed width for inputs */
+    padding: 8px 0;
+    border: none;
+    background-color: transparent;
+    color: #555;
+    font-size: 1.2em; /* Increase font size */
+    text-align: left; /* Align text inside the input to the left */
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+/* Switch container */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;  /* Keep the switch width */
+    height: 30px;  /* Height to match the size of icons */
+}
+
+/* Hide the default checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Slider track */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 30px;
+}
+
+/* Slider handle */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* Icon positioning */
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;  /* Larger icons */
+    color: white;
+    transition: opacity 0.4s;
+}
+
+/* ML icon (far left side) */
+.ml-icon {
+    left: -20px;  /* Move far away from the slider handle */
+    opacity: 1;
+}
+
+/* DL icon (far right side) */
+.dl-icon {
+    right: -20px;  /* Move far away from the slider handle */
+    opacity: 0;
+}
+
+/* Handle movement on check */
+input:checked + .slider:before {
+    transform: translateX(50px);  /* Moves the slider circle */
+}
+
+/* Background color change on check */
+input:checked + .slider {
+    background-color: #007bff;
+}
+
+/* Hide ML icon, show DL icon on check */
+input:checked + .slider .ml-icon {
+    opacity: 0;
+}
+
+input:checked + .slider .dl-icon {
+    opacity: 1;
+}

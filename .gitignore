@@ -1,0 +1,25 @@
+
+*.db
+*.sqlite3
+
+env/
+
+
+# Ignore Jupyter Notebook checkpoints
+*.ipynb_checkpoints/
+
+# Ignore trained model files
+train.db
+trainer.yml
+db.sqlite3
+new_student.db
+sqlite.db
+students.db
+testing.ipynb
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
