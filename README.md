@@ -1,7 +1,7 @@
 # Face Detection Project
 
 ## Overview
-This project is designed for face detection using deep learning models. It includes datasets, training scripts, and model evaluation tools.
+This project is designed for face detection using deep learning models.
 
 ## Features
 - Face detection with deep learning models.
