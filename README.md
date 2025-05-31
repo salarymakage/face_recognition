@@ -162,3 +162,15 @@ Real-time facial recognition offers a **more secure** alternative to passwords, 
 ## 🎬 Demo
 
 [![Watch the demo](https://img.youtube.com/vi/nELK_TXifDY/0.jpg)](https://youtu.be/nELK_TXifDY)
+
+---
+
+## 👥 Contributors
+
+Thanks to these amazing people for their contributions:
+
+| Avatar | Name | GitHub |
+|--------|------|--------|
+| <img src="https://github.com/PhorkNorak.png" width="50" height="50"> | Phork Norak | [@PhorkNorak](https://github.com/PhorkNorak) |
+| <img src="https://github.com/boromrop.png" width="50" height="50"> | Rop Borom | [@boromrop](https://github.com/boromrop) |
+
